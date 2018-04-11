@@ -8,6 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.google.android.gms.tagmanager.DataLayer;
+import com.google.android.gms.tagmanager.TagManager;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -44,6 +47,12 @@ public class SelectModeOfTransport extends AppCompatActivity implements View.OnC
         return super.onOptionsItemSelected(item);
     }
 
+    public void onResume() {
+        super.onResume();
+        DataLayer dataLayer = TagManager.getInstance(SelectModeOfTransport.this).getDataLayer();
+        dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "SelectModeOfTransportPage"));
+
+    }
     @Override
     public void onClick(View view) {
         Intent i;

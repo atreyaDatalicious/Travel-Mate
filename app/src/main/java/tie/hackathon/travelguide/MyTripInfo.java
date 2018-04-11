@@ -22,6 +22,8 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.dd.processbutton.FlatButton;
+import com.google.android.gms.tagmanager.DataLayer;
+import com.google.android.gms.tagmanager.TagManager;
 import com.gun0912.tedpicker.ImagePickerActivity;
 import com.squareup.picasso.Picasso;
 
@@ -114,6 +116,13 @@ public class MyTripInfo extends AppCompatActivity {
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DataLayer dataLayer = TagManager.getInstance(MyTripInfo.this).getDataLayer();
+        dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "MyTripsInfoPage"));
     }
 
     @OnTextChanged(R.id.fname) void onTextChanged(){

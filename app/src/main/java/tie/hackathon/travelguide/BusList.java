@@ -23,6 +23,8 @@ import android.widget.TextView;
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
 import com.fourmob.datetimepicker.date.DatePickerDialog.OnDateSetListener;
+import com.google.android.gms.tagmanager.DataLayer;
+import com.google.android.gms.tagmanager.TagManager;
 import com.sleepbot.datetimepicker.time.RadialPickerLayout;
 import com.sleepbot.datetimepicker.time.TimePickerDialog;
 
@@ -96,6 +98,7 @@ public class BusList extends AppCompatActivity implements OnDateSetListener, Tim
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
 
 
     private boolean isVibrate() {
@@ -231,6 +234,10 @@ public class BusList extends AppCompatActivity implements OnDateSetListener, Tim
         dest = sharedPreferences.getString(Constants.DESTINATION_CITY, "mumbai");
         city.setText(source + " to " + dest);
         getBuslist(); // Update Bus list
+
+        DataLayer dataLayer = TagManager.getInstance(BusList.this).getDataLayer();
+        dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "BusListPage"));
+
     }
 
 

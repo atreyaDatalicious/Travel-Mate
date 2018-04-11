@@ -22,6 +22,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
+import com.google.android.gms.tagmanager.DataLayer;
+import com.google.android.gms.tagmanager.TagManager;
 import com.sleepbot.datetimepicker.time.RadialPickerLayout;
 import com.sleepbot.datetimepicker.time.TimePickerDialog;
 
@@ -97,6 +99,7 @@ public class Hotels extends AppCompatActivity implements DatePickerDialog.OnDate
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -198,6 +201,8 @@ public class Hotels extends AppCompatActivity implements DatePickerDialog.OnDate
 
         city.setText("Showing " + destt + " hotels");
         getHotellist();
+        DataLayer dataLayer = TagManager.getInstance(Hotels.this).getDataLayer();
+        dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "HotelsPage"));
     }
 
     private boolean isVibrate() {

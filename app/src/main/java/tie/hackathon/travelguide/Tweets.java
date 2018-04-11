@@ -17,6 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.gms.tagmanager.DataLayer;
+import com.google.android.gms.tagmanager.TagManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -73,6 +75,12 @@ public class Tweets extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DataLayer dataLayer = TagManager.getInstance(Tweets.this).getDataLayer();
+        dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "TweetsPage"));
+    }
 
     private void getTweets() {
 
@@ -173,7 +181,6 @@ public class Tweets extends AppCompatActivity {
             });
             return view;
         }
-
         private class ViewHolder {
             TextView name;
         }

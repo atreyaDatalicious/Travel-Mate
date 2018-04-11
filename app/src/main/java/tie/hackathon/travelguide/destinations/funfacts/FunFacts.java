@@ -13,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 
 import com.ToxicBakery.viewpager.transforms.AccordionTransformer;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.gms.tagmanager.DataLayer;
+import com.google.android.gms.tagmanager.TagManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,6 +55,13 @@ public class FunFacts extends AppCompatActivity implements FunFactsView {
 
         initPresenter();
         getSupportActionBar().hide();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DataLayer dataLayer = TagManager.getInstance(FunFacts.this).getDataLayer();
+        dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "FunFactsPage"));
     }
 
     private void initPresenter() {

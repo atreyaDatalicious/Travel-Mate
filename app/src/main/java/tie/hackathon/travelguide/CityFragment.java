@@ -23,6 +23,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tagmanager.DataLayer;
+import com.google.android.gms.tagmanager.TagManager;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -84,7 +86,17 @@ public class CityFragment extends Fragment {
 
         getCity();
 
+
+
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        DataLayer dataLayer = TagManager.getInstance(getContext()).getDataLayer();
+        dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "CityDetailPage"));
+
     }
 
     @OnTextChanged(R.id.cityname) void onTextChanged(){

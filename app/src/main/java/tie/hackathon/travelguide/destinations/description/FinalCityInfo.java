@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.gms.tagmanager.DataLayer;
+import com.google.android.gms.tagmanager.TagManager;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.squareup.picasso.Picasso;
 
@@ -80,6 +82,7 @@ public class FinalCityInfo extends AppCompatActivity implements View.OnClickList
         initUi();
         initPresenter();
     }
+
 
     private void initPresenter() {
         mFinalCityInfoPresenter.attachView(this);
@@ -173,6 +176,8 @@ public class FinalCityInfo extends AppCompatActivity implements View.OnClickList
     @Override
     public void onResume() {
         super.onResume();
+        DataLayer dataLayer = TagManager.getInstance(FinalCityInfo.this).getDataLayer();
+        dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "FinalCityInfoPage"));
     }
 
     @Override

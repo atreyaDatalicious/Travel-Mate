@@ -57,6 +57,15 @@ public class Splash extends AppCompatActivity {
             }
         }, 2000);
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DataLayer dataLayer = TagManager.getInstance(Splash.this).getDataLayer();
+        dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "SplashScreen"));
+
     }
 
     private void getTagManager() {
@@ -80,8 +89,7 @@ public class Splash extends AppCompatActivity {
 
             }
         }, 2000, TimeUnit.MILLISECONDS);
-        DataLayer dataLayer = TagManager.getInstance(Splash.this).getDataLayer();
-        dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "SplashScreen"));
+
     }
 
     private static class ContainerLoadedCallback implements ContainerHolder.ContainerAvailableListener {

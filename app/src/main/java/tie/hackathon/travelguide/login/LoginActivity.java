@@ -20,7 +20,10 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.dd.processbutton.FlatButton;
+import com.google.android.gms.tagmanager.DataLayer;
+import com.google.android.gms.tagmanager.TagManager;
 
+import tie.hackathon.travelguide.Splash;
 import utils.Constants;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,6 +55,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private MaterialDialog      dialog;
     private Handler             mhandler;
 
+    DataLayer dataLayer;
     private LoginPresenter loginPresenter = new LoginPresenter();
 
     @Override
@@ -62,6 +66,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        dataLayer = TagManager.getInstance(LoginActivity.this).getDataLayer();
         loginPresenter.bind(this);
         ButterKnife.bind(this);
 
@@ -79,6 +84,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         login.setOnClickListener(this);
         ok_login.setOnClickListener(this);
         ok_signup.setOnClickListener(this);
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "LoginScreen"));
+
     }
 
     @Override
@@ -93,15 +107,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             // Open signup
             case R.id.signup :
                 loginPresenter.signUp();
+                dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "ChangeToSignUpBtn"));
+
                 break;
             // Open login
             case R.id.login :
                 loginPresenter.login();
+                dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "ChangeToLoginBtn"));
+
                 break;
             // Call login
             case R.id.ok_login :
                 numString = num_login.getText().toString();
                 passString = pass_login.getText().toString();
+                dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "LoginBtn"));
                 loginPresenter.ok_login(numString, passString, mhandler);
                 break;
             // Call signup
@@ -109,6 +128,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 numString = num_signup.getText().toString();
                 passString = pass_signup.getText().toString();
                 nameString = name.getText().toString();
+                dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "SignUpBtn"));
                 loginPresenter.ok_signUp(nameString, numString, passString, mhandler);
                 break;
         }

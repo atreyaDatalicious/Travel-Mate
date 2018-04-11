@@ -25,6 +25,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tagmanager.DataLayer;
+import com.google.android.gms.tagmanager.TagManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -111,6 +113,12 @@ public class CarDirections extends AppCompatActivity {
 
     }
 
+    public void onResume() {
+        super.onResume();
+        DataLayer dataLayer = TagManager.getInstance(CarDirections.this).getDataLayer();
+        dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "CarDirectionPage"));
+
+    }
     @OnClick(R.id.fab) void onClickFab(){
         String shareBody = "Lets plan a journey from " + surce + " to " + dest + ". The distace between the two cities is "
                 + distancetext;

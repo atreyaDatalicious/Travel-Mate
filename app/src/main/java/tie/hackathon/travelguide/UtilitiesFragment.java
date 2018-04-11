@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.google.android.gms.tagmanager.DataLayer;
+import com.google.android.gms.tagmanager.TagManager;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -33,6 +36,13 @@ public class UtilitiesFragment extends Fragment implements View.OnClickListener 
         checklist.setOnClickListener(this);
 
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        DataLayer dataLayer = TagManager.getInstance(getContext()).getDataLayer();
+        dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "UtilitiesPage"));
     }
 
     @Override

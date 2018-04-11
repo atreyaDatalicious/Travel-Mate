@@ -20,6 +20,8 @@ import android.view.MenuItem;
 
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
+import com.google.android.gms.tagmanager.DataLayer;
+import com.google.android.gms.tagmanager.TagManager;
 
 import utils.Constants;
 import tie.hackathon.travelguide.login.LoginActivity;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private BeaconManager       beaconManager;
     private Region              region;
 
+    DataLayer dataLayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        dataLayer = TagManager.getInstance(MainActivity.this).getDataLayer();
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -123,6 +128,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "HomePage"));
+
     }
 
     @Override
@@ -147,28 +161,40 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             fragment = new TravelFragment();
             fragmentManager.beginTransaction().replace(R.id.inc, fragment).commit();
+            dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "TravelFromNavigation"));
+
 
         } else if (id == R.id.nav_city) {
 
             fragment = new CityFragment();
             fragmentManager.beginTransaction().replace(R.id.inc, fragment).commit();
+            dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "DestinationFromNavigation"));
+
 
         } else if (id == R.id.nav_utility) {
 
             fragment = new UtilitiesFragment();
             fragmentManager.beginTransaction().replace(R.id.inc, fragment).commit();
+            dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "UtilityFromNavigation"));
+
 
         } else if (id == R.id.nav_changecity) {
 
             Intent i = new Intent(MainActivity.this, SelectCity.class);
             startActivity(i);
+            dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "ChangePlaceFromNavigation"));
+
 
         } else if (id == R.id.nav_emergency) {
 
             fragment = new EmergencyFragment();
             fragmentManager.beginTransaction().replace(R.id.inc, fragment).commit();
+            dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "EmergencyFromNavigation"));
+
 
         } else if (id == R.id.nav_signout) {
+
+            dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "LogoutFromNavigation"));
 
             sharedPreferences
                     .edit()

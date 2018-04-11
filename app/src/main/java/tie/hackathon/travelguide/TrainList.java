@@ -22,6 +22,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.gms.tagmanager.DataLayer;
+import com.google.android.gms.tagmanager.TagManager;
 import com.sleepbot.datetimepicker.time.RadialPickerLayout;
 import com.sleepbot.datetimepicker.time.TimePickerDialog;
 
@@ -182,6 +184,9 @@ public class TrainList extends AppCompatActivity implements com.fourmob.datetime
         city.setText(source + " to " + dest);
 
         getTrainlist();
+
+        DataLayer dataLayer = TagManager.getInstance(TrainList.this).getDataLayer();
+        dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "TrainListPage"));
     }
 
     @Override

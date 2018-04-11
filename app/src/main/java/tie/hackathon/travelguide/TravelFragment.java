@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.google.android.gms.tagmanager.DataLayer;
+import com.google.android.gms.tagmanager.TagManager;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -24,7 +27,7 @@ public class TravelFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.mytrips)     LinearLayout mytrips;
 
     public TravelFragment() {}
-
+    DataLayer dataLayer;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class TravelFragment extends Fragment implements View.OnClickListener {
         vehicle.setOnClickListener(this);
         acc.setOnClickListener(this);
         shop.setOnClickListener(this);
+        dataLayer = TagManager.getInstance(getContext()).getDataLayer();
 
         return v;
     }
@@ -51,32 +55,43 @@ public class TravelFragment extends Fragment implements View.OnClickListener {
 
 
     @Override
+    public void onResume() {
+        super.onResume();
+        dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "TravelPage"));
+
+    }
+    @Override
     public void onClick(View view) {
         Intent i;
 
         switch (view.getId()) {
 
             case R.id.vehicle:
+                dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "Mytrips"));
                 i = new Intent(activity, SelectModeOfTransport.class);
                 startActivity(i);
                 break;
 
             case R.id.shopping:
+                dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "OnlineShopping"));
                 i = new Intent(activity, ShoppingCurrentCity.class);
                 startActivity(i);
                 break;
 
             case R.id.accomo:
+                dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "HotelBooking"));
                 i = new Intent(activity, Hotels.class);
                 startActivity(i);
                 break;
 
             case R.id.realtime:
+                dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "RealTimeLocator"));
                 i = new Intent(activity, MapRealTimeActivity.class);
                 startActivity(i);
                 break;
 
             case R.id.mytrips:
+                dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "MyTrips"));
                 i = new Intent(activity, MyTrips.class);
                 startActivity(i);
                 break;
