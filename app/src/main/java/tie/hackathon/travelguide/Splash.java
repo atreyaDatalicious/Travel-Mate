@@ -57,7 +57,6 @@ public class Splash extends AppCompatActivity {
             }
         }, 2000);
 
-
     }
 
     @Override
@@ -65,8 +64,8 @@ public class Splash extends AppCompatActivity {
         super.onResume();
         DataLayer dataLayer = TagManager.getInstance(Splash.this).getDataLayer();
         dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "SplashScreen"));
-
     }
+
 
     private void getTagManager() {
         TagManager tagManager = TagManager.getInstance(this);
@@ -81,7 +80,6 @@ public class Splash extends AppCompatActivity {
                 Container container = containerHolder.getContainer();
                 if (!containerHolder.getStatus().isSuccess()) {
                     Log.e("CuteAnimals", "failure loading container"+11);
-//                    displayErrorToUser(R.string.load_error);
                     return;
                 }
                 ContainerLoadedCallback.registerCallbacksForContainer(container);
@@ -131,5 +129,4 @@ public class Splash extends AppCompatActivity {
             Log.i("CuteAnimals", "Custom function call tag :" + tagName + " is fired.");
         }
     }
-
 }

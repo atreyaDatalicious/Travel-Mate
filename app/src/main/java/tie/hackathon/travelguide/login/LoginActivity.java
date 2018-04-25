@@ -84,8 +84,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         login.setOnClickListener(this);
         ok_login.setOnClickListener(this);
         ok_signup.setOnClickListener(this);
-
-
     }
 
     @Override

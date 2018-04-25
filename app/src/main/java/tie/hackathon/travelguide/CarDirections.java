@@ -79,7 +79,7 @@ public class CarDirections extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private GoogleMap      map;
     private Handler        mHandler;
-
+    DataLayer dataLayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,16 +110,20 @@ public class CarDirections extends AppCompatActivity {
 
         setTitle("Car Directions");
         getDirections();
+        dataLayer = TagManager.getInstance(CarDirections.this).getDataLayer();
+
 
     }
 
     public void onResume() {
         super.onResume();
-        DataLayer dataLayer = TagManager.getInstance(CarDirections.this).getDataLayer();
         dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "CarDirectionPage"));
 
     }
     @OnClick(R.id.fab) void onClickFab(){
+        dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "ShareInCarDirection"));
+
+
         String shareBody = "Lets plan a journey from " + surce + " to " + dest + ". The distace between the two cities is "
                 + distancetext;
 

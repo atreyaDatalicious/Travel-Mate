@@ -52,5 +52,5 @@ public class Constants {
     public static String servicetype = "servicetype";
     public static final String apilink = "http://prabhakargupta.com/travel-mate/";
     public static final String maps_key = "AIzaSyBgktirlOODUO9zWD-808D7zycmP7smp-Y";
-
+    
 }

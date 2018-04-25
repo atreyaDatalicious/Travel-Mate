@@ -19,6 +19,7 @@ public class SelectModeOfTransport extends AppCompatActivity implements View.OnC
     @BindView(R.id.car)     LinearLayout car;
     @BindView(R.id.train)   LinearLayout train;
     @BindView(R.id.bus)     LinearLayout bus;
+    DataLayer dataLayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,8 @@ public class SelectModeOfTransport extends AppCompatActivity implements View.OnC
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setTitle("Select Mode of Transport");
+        dataLayer = TagManager.getInstance(SelectModeOfTransport.this).getDataLayer();
+
     }
 
     @Override
@@ -49,7 +52,6 @@ public class SelectModeOfTransport extends AppCompatActivity implements View.OnC
 
     public void onResume() {
         super.onResume();
-        DataLayer dataLayer = TagManager.getInstance(SelectModeOfTransport.this).getDataLayer();
         dataLayer.pushEvent("openScreen", DataLayer.mapOf("screenName", "SelectModeOfTransportPage"));
 
     }
@@ -58,14 +60,17 @@ public class SelectModeOfTransport extends AppCompatActivity implements View.OnC
         Intent i;
         switch (view.getId()) {
             case R.id.car:
+                dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "CarInTransport"));
                 i = new Intent(SelectModeOfTransport.this, CarDirections.class);
                 startActivity(i);
                 break;
             case R.id.bus:
+                dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "BusInTransport"));
                 i = new Intent(SelectModeOfTransport.this, BusList.class);
                 startActivity(i);
                 break;
             case R.id.train:
+                dataLayer.pushEvent("ClickedOn", DataLayer.mapOf("element", "TrainInTransport"));
                 i = new Intent(SelectModeOfTransport.this, TrainList.class);
                 startActivity(i);
                 break;
