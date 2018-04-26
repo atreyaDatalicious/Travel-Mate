@@ -100,7 +100,6 @@ public class Hotels extends AppCompatActivity implements DatePickerDialog.OnDate
 
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

@@ -129,4 +129,5 @@ public class Splash extends AppCompatActivity {
             Log.i("CuteAnimals", "Custom function call tag :" + tagName + " is fired.");
         }
     }
+
 }

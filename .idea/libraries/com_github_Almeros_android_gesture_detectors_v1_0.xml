@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.github.Almeros:android-gesture-detectors-v1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/android-gesture-detectors-v1.0.aar/309d532d8bc95ae5c27ebc391d132083/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/android-gesture-detectors-v1.0.aar/309d532d8bc95ae5c27ebc391d132083/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.Almeros/android-gesture-detectors/v1.0/dc99f9b86000421f805c16581f46d551a8d4f9ac/android-gesture-detectors-v1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
