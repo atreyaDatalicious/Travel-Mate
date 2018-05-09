@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import butterknife.ButterKnife;
 
 public class Checklist extends AppCompatActivity {
@@ -29,6 +31,11 @@ public class Checklist extends AppCompatActivity {
         setTitle("Check List");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        FirebaseAnalytics mFirebaseAnalytics;
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics.setCurrentScreen(this, "ChecklistPage", null /* class override */);
 
     }
 

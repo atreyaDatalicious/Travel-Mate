@@ -25,6 +25,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -99,7 +100,7 @@ public class CarDirections extends AppCompatActivity {
         dest        = s.getString(Constants.DESTINATION_CITY, "MUmbai");
 
         this.mapFragment    = (com.google.android.gms.maps.MapFragment) getFragmentManager().findFragmentById(R.id.map);
-        map                 = mapFragment.getMap();
+//        map                 = mapFragment.getMap();
 
         ShowMarker(Double.parseDouble(sorcelat), Double.parseDouble(sorcelon), "SOURCE");
         ShowMarker(Double.parseDouble(deslat), Double.parseDouble(deslon), "DESTINATION");
@@ -108,6 +109,11 @@ public class CarDirections extends AppCompatActivity {
 
         setTitle("Car Directions");
         getDirections();
+        FirebaseAnalytics mFirebaseAnalytics;
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics.setCurrentScreen(this, "CarDirectionPage", null /* class override */);
+
 
     }
 

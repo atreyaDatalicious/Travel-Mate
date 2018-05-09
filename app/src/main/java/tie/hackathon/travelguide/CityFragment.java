@@ -23,6 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -83,6 +84,11 @@ public class CityFragment extends Fragment {
         cityname.setThreshold(1);
 
         getCity();
+        FirebaseAnalytics mFirebaseAnalytics;
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
+        mFirebaseAnalytics.setCurrentScreen(getActivity(), "CityPage", null /* class override */);
+
 
         return v;
     }

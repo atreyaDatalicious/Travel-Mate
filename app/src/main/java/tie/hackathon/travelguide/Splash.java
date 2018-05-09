@@ -8,11 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.eftimoff.androipathview.PathView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import tie.hackathon.travelguide.login.LoginActivity;
 
 public class Splash extends AppCompatActivity {
-
+    private FirebaseAnalytics mFirebaseAnalytics;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +23,10 @@ public class Splash extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
+        FirebaseAnalytics mFirebaseAnalytics;
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics.setCurrentScreen(this, "SplashScreen", null /* class override */);
 
         final PathView pathView = (PathView) findViewById(R.id.pathView);
         pathView.getPathAnimator()

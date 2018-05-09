@@ -27,6 +27,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,6 +79,11 @@ public class PlacesOnMap extends AppCompatActivity {
         type        = i.getStringExtra("type_");
         mHandler    = new Handler(Looper.getMainLooper());
 
+        FirebaseAnalytics mFirebaseAnalytics;
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics.setCurrentScreen(this, "PlacesOnMapPage", null /* class override */);
+
         setTitle(name);
         switch (type) {
             case "restaurant":
@@ -106,7 +112,7 @@ public class PlacesOnMap extends AppCompatActivity {
 
         this.mapFragment = (com.google.android.gms.maps.MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
-        map = mapFragment.getMap();
+//        map = mapFragment.getMap();
 
         GPSTracker tracker = new GPSTracker(this);
         if (!tracker.canGetLocation()) {

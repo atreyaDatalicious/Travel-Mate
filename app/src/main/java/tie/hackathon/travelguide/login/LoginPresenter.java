@@ -58,6 +58,7 @@ public class LoginPresenter {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                view.dismissLoadingDialog();
                 view.showError();
             }
 
@@ -76,6 +77,7 @@ public class LoginPresenter {
                             view.dismissLoadingDialog();
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            view.dismissLoadingDialog();
                             view.showError();
                         }
                     }

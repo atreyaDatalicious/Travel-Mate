@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.dd.processbutton.FlatButton;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import utils.Constants;
 import butterknife.BindView;
@@ -79,6 +80,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         login.setOnClickListener(this);
         ok_login.setOnClickListener(this);
         ok_signup.setOnClickListener(this);
+
+        FirebaseAnalytics mFirebaseAnalytics;
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics.setCurrentScreen(this, "LoginPage", null /* class override */);
+
     }
 
     @Override
@@ -134,6 +141,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void showError() {
         Toast.makeText(this, "Invalid Password or number", Toast.LENGTH_LONG)
                 .show();
+         dismissLoadingDialog();
     }
 
     @Override

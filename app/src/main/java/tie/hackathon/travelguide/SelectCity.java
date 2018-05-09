@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -81,6 +83,10 @@ public class SelectCity extends AppCompatActivity {
         e = s.edit();
         mHandler = new Handler(Looper.getMainLooper());
 
+        FirebaseAnalytics mFirebaseAnalytics;
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics.setCurrentScreen(this, "SelectCityPage", null /* class override */);
 
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +119,7 @@ public class SelectCity extends AppCompatActivity {
 
 
         getSupportActionBar().setTitle(" ");
+
 
     }
 

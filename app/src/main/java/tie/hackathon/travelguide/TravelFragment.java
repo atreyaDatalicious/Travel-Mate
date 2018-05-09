@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -38,6 +40,11 @@ public class TravelFragment extends Fragment implements View.OnClickListener {
         vehicle.setOnClickListener(this);
         acc.setOnClickListener(this);
         shop.setOnClickListener(this);
+
+        FirebaseAnalytics mFirebaseAnalytics;
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
+        mFirebaseAnalytics.setCurrentScreen(getActivity(), "TravelPage", null /* class override */);
 
         return v;
     }

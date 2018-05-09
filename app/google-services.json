@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "272990394396",
+    "firebase_url": "https://travel-mate-887fa.firebaseio.com",
+    "project_id": "travel-mate-887fa",
+    "storage_bucket": "travel-mate-887fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272990394396:android:209cf9dc306a8135",
+        "android_client_info": {
+          "package_name": "tie.hackathon.travelguide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272990394396-bf2ph9sf1dq2murd8j8diira8qn9hddf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfZVcq5MWQ0DIID5JnpQnaXYwqtT5dmxk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

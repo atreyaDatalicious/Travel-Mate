@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -43,6 +45,11 @@ public class EmergencyFragment extends Fragment implements View.OnClickListener 
         blood_bank.setOnClickListener(this);
         bomb.setOnClickListener(this);
         railways.setOnClickListener(this);
+
+        FirebaseAnalytics mFirebaseAnalytics;
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
+        mFirebaseAnalytics.setCurrentScreen(getActivity(), "EmergencyPage", null /* class override */);
 
         return view;
     }

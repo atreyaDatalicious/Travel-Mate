@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -31,6 +33,11 @@ public class UtilitiesFragment extends Fragment implements View.OnClickListener 
 
         sharecontact.setOnClickListener(this);
         checklist.setOnClickListener(this);
+
+        FirebaseAnalytics mFirebaseAnalytics;
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
+        mFirebaseAnalytics.setCurrentScreen(getActivity(), "UtilitiesPage", null /* class override */);
 
         return v;
     }
