@@ -46,6 +46,15 @@
             android:textSize="35sp"
             android:textStyle="bold" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/openKnoitBtn"
+            android:background="@color/colorPrimary"
+            android:layout_marginLeft="40dp"
+            android:text="Open Knoit"
+            android:textColor="@color/white"
+            android:layout_marginRight="40dp"/>
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
